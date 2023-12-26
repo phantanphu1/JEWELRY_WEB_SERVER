@@ -1,0 +1,5905 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.3",
+      "title": "REST API",
+      "description": ""
+    },
+    "basePath": "/",
+    "securityDefinitions": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Bearer token"
+      }
+    },
+    "paths": {
+      "/api/product/getAllProduct": {
+        "get": {
+          "tags": [
+            "Product"
+          ],
+          "description": "",
+          "parameters": [
+
+            {
+              "in": "query",
+              "name": "nameProduct",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "in": "query",
+              "name": "pageNumber",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/auth": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "public_address",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "signature",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/upload-avatar": {
+        "post": {
+          "description": "Uploads user avatar.",
+          "parameters": [
+            {
+              "name": "avatar",
+              "in": "formData",
+              "type": "file"
+            }
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/connect-trust-wallet": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "wallet_address",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "signature",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/sign-up-with-email": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "referral_code": {
+                    "example": "referral_code",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/sign-up-with-phone": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "84974483643",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "123456",
+                    "type": "string"
+                  },
+                  "referral_code": {
+                    "example": "referral_code",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/user/login": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "phamhung110901@gmail.com"
+                  },
+                  "password": {
+                    "example": "123456"
+                  },
+                  "phone": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/user/register": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userName":{
+                    "example": "phantanphu"
+                  },
+                  "email": {
+                    "example": "phantanphu15@gmail.com"
+                  },
+                  "password": {
+                    "example": "Tanphu15052001@"
+                  }
+                  
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/send-mail": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/get-user-info": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/get-avatar": {
+        "get": {
+          "description": "get avatar.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/forgot-password": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "verification": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/edit-profile": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/send-sms": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/verify-otp": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/get-notifications-bonus": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/generate-secret": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/generate-qr": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/verify-totp": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "example": "any"
+                  },
+                  "secret": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/save-info-login-google": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/save-info-login-telegram": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "username": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/auth/change-password": {
+        "put": {
+          "tags": [
+            "Auth"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "old_password": {
+                    "example": "12345672124",
+                    "description": "password old"
+                  },
+                  "new_password": {
+                    "example": "12345672124",
+                    "description": "new password"
+                  },
+                  "confirm_new_password": {
+                    "example": "12345672124",
+                    "description": "confirm new password"
+                  },
+                  "code_otp": {
+                    "example": "241234"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/auth/send-verify-qr-code": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "ngomyhanh@gmail.com"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/auth/set-login-password": {
+        "put": {
+          "tags": [
+            "Auth"
+          ],
+          "description": " , new_password, ",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login_password": {
+                    "example": "12345672124"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/auth/get-set-login": {
+        "get": {
+          "tags": [
+            "Auth"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/create-deposit-address": {
+        "post": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/get-deposit-address": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "symbol",
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "in": "query",
+              "name": "bep20",
+              "schema": {
+                "type": "string"
+              },
+              "example": "true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/create-currency-total": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            },
+            {
+              "name": "password",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            },
+            {
+              "name": "email",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            },
+            {
+              "name": "balance",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/get-all-deposit": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/get-moonpay-fiat": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/get-deposit-bonus": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/get-unlocked-amount": {
+        "get": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/deposit/claim-unlocked-amount": {
+        "post": {
+          "tags": [
+            "Deposit"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/game/get-total-reaction": {
+        "get": {
+          "tags": [
+            "Game"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "game_identifier",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/game/get-total-prize": {
+        "get": {
+          "tags": [
+            "Game"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/game/reaction": {
+        "post": {
+          "tags": [
+            "Game"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "game_identifier": {
+                    "example": "softswiss:CrazyStarter"
+                  },
+                  "user_id": {
+                    "example": "117"
+                  },
+                  "reaction": {
+                    "example": "like"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/game/get-top-pick-list": {
+        "get": {
+          "tags": [
+            "Game"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/withdraw": {
+        "post": {
+          "tags": [
+            "Withdraw"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to_address": {
+                    "example": "any"
+                  },
+                  "value": {
+                    "example": "0.000000001"
+                  },
+                  "symbol": {
+                    "example": "USDT"
+                  },
+                  "network": {
+                    "example": "ERC20"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/withdraw/get-history-transaction": {
+        "get": {
+          "tags": [
+            "Withdraw"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "startDate",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "symbol",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "deposit",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            },
+            {
+              "in": "query",
+              "name": "address",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/withdraw/get-fee-coin": {
+        "get": {
+          "tags": [
+            "Withdraw"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "network",
+              "schema": {
+                "type": "string"
+              },
+              "example": "BNB"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/exchange/get-exchange-rate": {
+        "get": {
+          "tags": [
+            "Exchange"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/exchange/swap": {
+        "post": {
+          "tags": [
+            "Exchange"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from_token_address": {
+                    "example": "any"
+                  },
+                  "to_token_address": {
+                    "example": "any"
+                  },
+                  "network_from_token_address": {
+                    "example": "any"
+                  },
+                  "network_to_token_address": {
+                    "example": "BEP20"
+                  },
+                  "amount": {
+                    "example": "ERC20"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/exchange/get-transaction-from-blockchain": {
+        "post": {
+          "tags": [
+            "Exchange"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deposit_address": {
+                    "example": "0x7354E0d6A612019feA7f374385CBD1D9eef7fa31"
+                  },
+                  "last_sync_blockchain": {
+                    "example": "2023-07-15 11:30:11"
+                  },
+                  "symbol": {
+                    "example": "USDT"
+                  },
+                  "network": {
+                    "example": "ERC20"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/exchange/quote": {
+        "post": {
+          "tags": [
+            "Exchange"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from_token_address": {
+                    "example": "any"
+                  },
+                  "to_token_address": {
+                    "example": "any"
+                  },
+                  "amount": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/exchange/get-swap": {
+        "get": {
+          "tags": [
+            "Exchange"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "currency",
+              "schema": {
+                "type": "string"
+              },
+              "example": "BNB"
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "in": "query",
+              "name": "time",
+              "schema": {
+                "type": "number"
+              },
+              "example": "60"
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/promotion/check-first-four-deposit": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "symbol",
+              "schema": {
+                "type": "string"
+              },
+              "example": "GOD"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Promotion"
+          ]
+        }
+      },
+      "/api/stripe/webhooks": {
+        "post": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Stripe"
+          ]
+        }
+      },
+      "/api/stripe/get-fiat-amount": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Stripe"
+          ]
+        }
+      },
+      "/api/stripe/get-crypto-amount": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Stripe"
+          ]
+        }
+      },
+      "/api/game/start-demo": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "username": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/create-session": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "game": {
+                    "example": "softswiss:AlienFruits"
+                  },
+                  "currency": {
+                    "example": "USD"
+                  },
+                  "balance": {
+                    "example": "25000"
+                  },
+                  "ip": {
+                    "example": "14.224.165.170"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/balance-request": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "username": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/play": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "301_usd_usd_phamminh1309@gmail.com_softswiss:AlienFruits"
+                  },
+                  "currency": {
+                    "example": "USD"
+                  },
+                  "game": {
+                    "example": "softswiss:AlienFruits"
+                  },
+                  "game_id": {
+                    "example": ""
+                  },
+                  "actions": {
+                    "example": [
+                      {
+                        "action": "bet",
+                        "amount": 1000,
+                        "action_id": "123",
+                        "jackpot_contribution": 1.23
+                      },
+                      {
+                        "action": "win",
+                        "amount": 1250,
+                        "action_id": "124"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/rollback": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "301_usd_usd_phamminh1309@gmail.com"
+                  },
+                  "currency": {
+                    "example": "USD"
+                  },
+                  "game": {
+                    "example": "softswiss:AlienFruits"
+                  },
+                  "game_id": {
+                    "example": ""
+                  },
+                  "actions": {
+                    "example": [
+                      {
+                        "action": "rollback",
+                        "action_id": "125",
+                        "original_action_id": "123"
+                      },
+                      {
+                        "action": "rollback",
+                        "action_id": "126",
+                        "original_action_id": "124"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-history-game": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "schema": {
+                "type": "string"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "highRollers",
+              "schema": {
+                "type": "string"
+              },
+              "example": "true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-all-games": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "schema": {
+                "type": "string"
+              },
+              "example": "AlienFruits"
+            },
+            {
+              "in": "query",
+              "name": "category",
+              "schema": {
+                "type": "string"
+              },
+              "example": "slots"
+            },
+            {
+              "in": "query",
+              "name": "theme",
+              "schema": {
+                "type": "string"
+              },
+              "example": "sport"
+            },
+            {
+              "in": "query",
+              "name": "provider",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss"
+            },
+            {
+              "in": "query",
+              "name": "released_at",
+              "schema": {
+                "type": "string"
+              },
+              "example": "desc"
+            },
+            {
+              "in": "query",
+              "name": "providers",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer|string"
+                },
+                "example": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              }
+            },
+            {
+              "in": "query",
+              "name": "order_by",
+              "schema": {
+                "type": "string"
+              },
+              "example": "released_at"
+            },
+            {
+              "in": "query",
+              "name": "order_value",
+              "schema": {
+                "type": "string"
+              },
+              "example": "desc"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-game-detail": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "game_id": {
+                    "example": "CrazyStarter"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-category-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-provider-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-theme-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/high-roller": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "game_identifier",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/all-bet": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "game_identifier",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/my-bet": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "game_identifier",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "softswiss:CrazyStarter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/my-bet-detail": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "bet_id",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bet_id": {
+                    "example": 1776320981473332751
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-recent-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-favorite-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "40"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-top-rated-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "40"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-latest-bet-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "40"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-top-3-favorites": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "user_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-recent-big-win-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-live-casino-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "providers",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer|string"
+                },
+                "example": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              }
+            },
+            {
+              "in": "query",
+              "name": "order_by",
+              "schema": {
+                "type": "string"
+              },
+              "example": "released_at"
+            },
+            {
+              "in": "query",
+              "name": "order_value",
+              "schema": {
+                "type": "string"
+              },
+              "example": "desc"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-total-favorite-game": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "10"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-hot-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "providers",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer|string"
+                },
+                "example": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              }
+            },
+            {
+              "in": "query",
+              "name": "order_by",
+              "schema": {
+                "type": "string"
+              },
+              "example": "released_at"
+            },
+            {
+              "in": "query",
+              "name": "order_value",
+              "schema": {
+                "type": "string"
+              },
+              "example": "desc"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-rating": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "game_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-related-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "game_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "2"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/statistics-gaming-transaction": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "game_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "2"
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/statistics-game-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "game_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "2"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/free-spins-issue": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "games": {
+                    "example": [
+                      "softswiss:AlienFruits"
+                    ]
+                  },
+                  "currency": {
+                    "example": "USD"
+                  },
+                  "freespins_quantity": {
+                    "example": "10"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/free-spins-cancel": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "issue_id": {
+                    "example": "24781c96-3b0c-45d4-b9e1-2d126b0f2115"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-bonenza-mini-games": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "10"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/game/get-wager-contest-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Game"
+          ]
+        }
+      },
+      "/api/rating": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "game_id": {
+                    "example": 1
+                  },
+                  "rating": {
+                    "example": 5
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Rating"
+          ]
+        }
+      },
+      "/api/rating/{gameId}": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "gameId",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Rating"
+          ]
+        }
+      },
+      "/api/transaction-histories": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "type",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "deposit"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "dayPast",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "process"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Transaction History"
+          ]
+        }
+      },
+      "/api/transaction-histories/get-bill-list": {
+        "get": {
+          "description": "limit, page, symbol, day_past, type",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "day_past",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "type",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "example": "game"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Transaction History"
+          ]
+        }
+      },
+      "/api/transaction-histories/get-bill-type-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Transaction History"
+          ]
+        }
+      },
+      "/api/transaction-histories/get-rollover-overview": {
+        "get": {
+          "description": "get-rollover-overview deposit",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Transaction History"
+          ]
+        }
+      },
+      "/api/debug/format-game-currency": {
+        "get": {
+          "description": "Get right format of game currency",
+          "parameters": [
+            {
+              "name": "amount",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "2.5"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/debug/get-amount-rate": {
+        "get": {
+          "description": "Convert money from 1 currency to another",
+          "parameters": [
+            {
+              "name": "amount",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "sourceAccount",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/debug/transfer-to-main-wallet": {
+        "get": {
+          "description": "transfer-to-main-wallet",
+          "parameters": [
+            {
+              "name": "from_address",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "symbol",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            },
+             {
+              "name": "private_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/debug/sync-transaction-from-blockchain": {
+        "get": {
+          "description": "transfer-to-main-wallet",
+          "parameters": [
+            {
+              "name": "deposit_address",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "symbol",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            },
+            {
+              "name": "userId",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/debug/get-balance": {
+        "get": {
+          "description": "transfer-to-main-wallet",
+          "parameters": [
+            {
+              "name": "from_address",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "symbol",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "VND"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/debug/get-transaction-from-tron": {
+        "get": {
+          "description": "transfer-to-main-wallet",
+          "parameters": [
+            {
+              "name": "deposit_address",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Debug"
+          ]
+        }
+      },
+      "/api/user-setting/get-general-setting": {
+        "get": {
+          "description": "get-general-setting",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/edit-promotion-announcement": {
+        "put": {
+          "description": "edit-promotion-announcementr",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isPromotionAnnouncement": {
+                    "example": "1",
+                    "description": "1 or 0 boolean"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/edit-privacy-setting": {
+        "put": {
+          "description": "edit-privacy-setting",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isHideNamePublicList": {
+                    "example": "1",
+                    "description": "1 or 0 boolean"
+                  },
+                  "isHideGamingData": {
+                    "example": "1",
+                    "description": "1 or 0 boolean"
+                  },
+                  "notReceiveMoneyFromStranger": {
+                    "example": "1",
+                    "description": "1 or 0 boolean"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/get-privacy-setting": {
+        "get": {
+          "description": "get-privacy-setting",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/send-phone-number": {
+        "post": {
+          "description": "send-phone-number",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "84349046296"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/confirm-phone-number": {
+        "post": {
+          "description": "send-phone-number",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "example": "241234"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/get-email-and-phone-verify": {
+        "get": {
+          "description": "get-email-and-phone-verify",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/qr-code": {
+        "get": {
+          "description": "get-qr-code Two-factor Authentication",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/confirm-qr-code": {
+        "post": {
+          "description": "confirm code Two-factor Authentication",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code_otp": {
+                    "example": "241234"
+                  },
+                  "password": {
+                    "example": "password",
+                    "description": "password"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/send-verify-email": {
+        "post": {
+          "description": "confirm code Two-factor Authentication",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "lequochung2001@gmail.com"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/disable-two-factor-authentication": {
+        "post": {
+          "description": "disable- Two-factor Authentication",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code_otp": {
+                    "example": "241234"
+                  },
+                  "password": {
+                    "example": "password",
+                    "description": "password"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-setting/confirm-kyc": {
+        "post": {
+          "description": "Confirm KYC(upload front & back photos)",
+          "parameters": [
+            {
+              "name": "photo_front",
+              "in": "formData",
+              "type": "file"
+            },
+            {
+              "name": "photo_back",
+              "in": "formData",
+              "type": "file"
+            }
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "User Setting"
+          ]
+        }
+      },
+      "/api/user-profile/get-user-profile": {
+        "get": {
+          "description": "get-privacy-setting",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "301"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Profile"
+          ]
+        }
+      },
+      "/api/auth/get-two-factor-auth-status": {
+        "get": {
+          "description": "confirm code Two-factor Authentication",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "lequochung2001@gmail.com"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Profile"
+          ]
+        }
+      },
+      "/api/user-profile/get-wager-contest-list/:userId": {
+        "get": {
+          "description": "get-wager-contest-list",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Profile"
+          ]
+        }
+      },
+      "/api/user-session/create-session": {
+        "post": {
+          "description": "create-session",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "browser": {
+                    "example": "Windows 10 (Chrome 11)"
+                  },
+                  "location": {
+                    "example": "VN"
+                  },
+                  "ip_address": {
+                    "example": "125.235.236.186"
+                  },
+                  "session": {
+                    "example": "125.235.236.186"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Session"
+          ]
+        }
+      },
+      "/api/user-session/get-list-user-session": {
+        "get": {
+          "description": "get-list-user-session",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "40"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "40"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Session"
+          ]
+        }
+      },
+      "/api/user-session/update-last-used-at": {
+        "put": {
+          "description": "update-last-used-at",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "session": {
+                    "example": "241234"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Session"
+          ]
+        }
+      },
+      "/api/user-session/delete-user-session/{user_session_id}": {
+        "delete": {
+          "description": "Delete a user session by user session ID",
+          "parameters": [
+            {
+              "name": "user_session_id",
+              "in": "path",
+              "required": true,
+              "description": "The ID of the user session to be deleted",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "User Session"
+          ]
+        }
+      },
+      "/api/admin/login": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "abc@gmail.com",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "password",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/get-all-admin": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "thomas"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/create-admin": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "phamhung110901@gmail.com"
+                  },
+                  "password": {
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/change-password": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "old_password": {
+                    "example": "123456"
+                  },
+                  "new_password": {
+                    "example": "123456"
+                  },
+                  "confirm_new_password": {
+                    "example": "123456"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/delete-admin/:id": {
+        "delete": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/user-management/get-all-user": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "userName",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "phan t"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/user-management/get-user-detail": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/user-management/create-user": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "phamhung110901@gmail.com"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/user-management/update-user/:id": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "phamhung110901@gmail.com"
+                  },
+                  "username": {
+                    "example": "abcxyz"
+                  },
+                  "status": {
+                    "example": "active"
+                  },
+                  "roleId": {
+                    "example": "1"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/user-management/approve-kyc/{id}": {
+        "put": {
+          "description": "Approve KYC by user Id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/user-management/reject-kyc/{id}": {
+        "put": {
+          "description": "Reject KYC by user Id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/user-management/delete-user/:id": {
+        "delete": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/user-management/total-balance-casino-slots-wager": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - User Management"
+          ]
+        }
+      },
+      "/api/admin/statistical-management/get-bet-amount-total": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-01"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-10"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Statistical Management"
+          ]
+        }
+      },
+      "/api/admin/statistical-management/get-total-transaction": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-01"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-10"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Statistical Management"
+          ]
+        }
+      },
+      "/api/admin/game-management/create": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "title"
+                  },
+                  "identifier": {
+                    "example": "title"
+                  },
+                  "identifier2": {
+                    "example": "identifier2"
+                  },
+                  "provider": {
+                    "example": "provider"
+                  },
+                  "category": {
+                    "example": "category"
+                  },
+                  "theme": {
+                    "example": "category"
+                  },
+                  "feature_group": {
+                    "example": "category"
+                  },
+                  "line": {
+                    "example": "category"
+                  },
+                  "payout": {
+                    "example": "category"
+                  },
+                  "description": {
+                    "example": "category"
+                  },
+                  "tag": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer|string"
+                    },
+                    "example": [
+                      "hot game",
+                      "table game"
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Game Management"
+          ]
+        }
+      },
+      "/api/admin/game-management/update/:id": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "title"
+                  },
+                  "identifier": {
+                    "example": "title"
+                  },
+                  "identifier2": {
+                    "example": "identifier2"
+                  },
+                  "provider": {
+                    "example": "provider"
+                  },
+                  "category": {
+                    "example": "category"
+                  },
+                  "theme": {
+                    "example": "category"
+                  },
+                  "feature_group": {
+                    "example": "category"
+                  },
+                  "line": {
+                    "example": "category"
+                  },
+                  "payout": {
+                    "example": "category"
+                  },
+                  "description": {
+                    "example": "category"
+                  },
+                  "tag": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer|string"
+                    },
+                    "example": [
+                      "hot game",
+                      "table game"
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Game Management"
+          ]
+        }
+      },
+      "/api/admin/game-management/delete/:id": {
+        "delete": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Game Management"
+          ]
+        }
+      },
+      "/api/admin/transaction/get-list-transaction": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "day_past",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "1"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "process"
+            },
+            {
+              "name": "type",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "deposit"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/member-deposit-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "success"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "BEP20"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-23"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-30"
+            },
+            {
+              "name": "balance",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "nickname",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/withdraw-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "process"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "BEP20"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-23"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-30"
+            },
+            {
+              "name": "tx_id",
+              "in": "query",
+              "description": "It is transaction hash of the transaction",
+              "schema": {
+                "type": "string"
+              },
+              "example": "0x0b7fd70ec465ec362ffca37a108e55b9834d399387eaabf06c01ec54f25fa71c"
+            },
+            {
+              "name": "nickname",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "test"
+            },
+            {
+              "name": "referral_code",
+              "in": "query",
+              "schema": {
+                "type": "abcdefgh"
+              },
+              "example": "abc"
+            },
+            {
+              "name": "user_id",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "1"
+            },
+            {
+              "name": "balance",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/get-transactions-to-main-wallet": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-23"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-30"
+            },
+            {
+              "name": "symbol",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "USDT"
+            },
+            {
+              "name": "network",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "BEP20"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/affiliate/withdraw-list": {
+        "get": {
+          "description": "Get affiliate withdrawal list",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search_type",
+              "description": "Search Type (All, Nickname, ReferralCode, TxID)",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": ["All", "Nickname", "ReferralCode", "TxID"]
+              },
+              "example": "All"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "status",
+              "description": "Withdraw Status (success, cancel, process, reject)",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": ["success", "cancel", "process", "reject"]
+              },
+              "example": "process"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-23"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-30"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/affiliate/deposit-list": {
+        "get": {
+          "description": "Get affiliate deposit list",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search_type",
+              "description": "Search Type (All, Nickname)",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": ["All", "Nickname"]
+              },
+              "example": "All"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "tina"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "success"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-23"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-30"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/transaction/network-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/accept-withdraw/:id": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "example": "1",
+                    "description": "1 is accept | 0 is cancel"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/get-total-transactions-today": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "present_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-11-05"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/change-status-withdraw": {
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Just received pending and rejected status",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "example": "pending"
+                  },
+                  "id_array": {
+                    "example": [
+                      1,
+                      2,
+                      3,
+                      5
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/transaction/get-total-amount-transaction-to-main-wallet": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "transaction_type",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "deposit"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Admin - Transaction"
+          ]
+        }
+      },
+      "/api/admin/dashboard/get-all-highest": {
+        "get": {
+          "description": "this route is return highest of deposit, withdraw, prize, profit, bet today ",
+          "parameters": [
+            {
+              "name": "present_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-11-03"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin - Dashboard"
+          ]
+        }
+      },
+      "/api/admin/dashboard/get-total-statistics": {
+        "get": {
+          "description": "get total statistics",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin - Dashboard"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-all-tree": {
+        "get": {
+          "description": "Get all trees",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Limit count per page (default: 10)",
+              "required": false,
+              "type": "integer",
+              "example": 10
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page Number (default: 1)",
+              "required": false,
+              "type": "integer",
+              "example": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-all-branch": {
+        "get": {
+          "description": "Get all branches",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Limit count per page (default: 10)",
+              "required": false,
+              "type": "integer",
+              "example": 10
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page Number (default: 1)",
+              "required": false,
+              "type": "integer",
+              "example": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-all-leaf": {
+        "get": {
+          "description": "Get all leaves",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Limit count per page (default: 10)",
+              "required": false,
+              "type": "integer",
+              "example": 10
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page Number (default: 1)",
+              "required": false,
+              "type": "integer",
+              "example": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-all-player": {
+        "get": {
+          "description": "Get all players",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Limit count per page (default: 10)",
+              "required": false,
+              "type": "integer",
+              "example": 10
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page Number (default: 1)",
+              "required": false,
+              "type": "integer",
+              "example": 1
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-tree-admin/{id}": {
+        "get": {
+          "description": "Get tree admin by id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Tree Admin ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/create-tree-admin": {
+        "post": {
+          "description": "Create tree admin for affiliate",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "example",
+                    "type": "string"
+                  },
+                  "email": {
+                    "example": "example@gmail.com",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "example": "1234567890",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "password",
+                    "type": "string"
+                  },
+                  "casino_wager_fee": {
+                    "example": 1.4,
+                    "type": "number"
+                  },
+                  "casino_losing_fee": {
+                    "example": 20,
+                    "type": "number"
+                  },
+                  "slot_wager_fee": {
+                    "example": 1.4,
+                    "type": "number"
+                  },
+                  "slot_losing_fee": {
+                    "example": 30,
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-branch-admin/{id}": {
+        "get": {
+          "description": "Get branch admin by id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Branch Admin ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/create-branch-admin": {
+        "post": {
+          "description": "Create branch admin for affiliate",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "example",
+                    "type": "string"
+                  },
+                  "email": {
+                    "example": "example@gmail.com",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "example": "1234567890",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "password",
+                    "type": "string"
+                  },
+                  "casino_wager_fee": {
+                    "example": 0.8,
+                    "type": "number"
+                  },
+                  "casino_losing_fee": {
+                    "example": 8,
+                    "type": "number"
+                  },
+                  "slot_wager_fee": {
+                    "example": 0.8,
+                    "type": "number"
+                  },
+                  "slot_losing_fee": {
+                    "example": 8,
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-leaf-admin/{id}": {
+        "get": {
+          "description": "Get leaf by id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Leaf ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/create-leaf-admin": {
+        "post": {
+          "description": "Create leaf admin for affiliate",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "example",
+                    "type": "string"
+                  },
+                  "email": {
+                    "example": "example@gmail.com",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "example": "1234567890",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "password",
+                    "type": "string"
+                  },
+                  "casino_wager_fee": {
+                    "example": 0.3,
+                    "type": "number"
+                  },
+                  "slot_wager_fee": {
+                    "example": 0.3,
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/create-player": {
+        "post": {
+          "description": "Create player for affiliate",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "example",
+                    "type": "string"
+                  },
+                  "email": {
+                    "example": "example@gmail.com",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "example": "1234567890",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "password",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/admin/tree-affiliate/get-player/{id}": {
+        "get": {
+          "description": "Get player by id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Player ID",
+              "required": true,
+              "type": "integer",
+              "example": 383
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Admin", "Tree Affiliate"
+          ]
+        }
+      },
+      "/api/currency/get-favorite-currency": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "usd"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Currency"
+          ]
+        }
+      },
+      "/api/currency/liked": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fiat_currency": {
+                    "example": "eur"
+                  },
+                  "crypto_currency": {
+                    "example": "usdt"
+                  },
+                  "network": {
+                    "example": "BEP20"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Currency"
+          ]
+        }
+      },
+      "/api/vip/get-rank-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Vip"
+          ]
+        }
+      },
+      "/api/vip/get-bonus": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Vip"
+          ]
+        }
+      },
+      "/api/vip/confirm-bonus-vip": {
+        "post": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Vip"
+          ]
+        }
+      },
+      "/api/vip/get-list-bonus-transactions": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "action_type",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "VIP Treasure bonus"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Vip"
+          ]
+        }
+      },
+      "/api/vip/get-list-action-type-bonus": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Vip"
+          ]
+        }
+      },
+      "/api/affiliate/get-referral": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-reward-list": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "username",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "test"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-11-01"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-11-03"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-list-referral-code": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/create-referral-code": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "referral_code": {
+                    "example": "abcdsas"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/delete-referral-code/:id": {
+        "delete": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-list-friends-management": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "10"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "1"
+            },
+            {
+              "name": "username",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "ztazkduywic"
+            },
+            {
+              "name": "start_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-10-31"
+            },
+            {
+              "name": "end_date",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "example": "2023-11-03"
+            },
+            {
+              "name": "userid",
+              "in": "query",
+              "schema": {
+                "type": "number"
+              },
+              "example": "457"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-live-reward-list": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-referral-rewards-detail": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-total-commission-rewards-detail": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-reward-activities": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "6"
+            },
+            {
+              "in": "query",
+              "name": "rewards_type",
+              "schema": {
+                "type": "string"
+              },
+              "example": "any"
+            }
+  
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/get-referral-bonus-withdrawal-history": {
+        "get": {
+          "description": "",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "10"
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "0"
+            },
+            {
+              "in": "query",
+              "name": "type_reward",
+              "schema": {
+                "type": "commissions"
+              },
+              "example": "0"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/withdraw-referral-rewards": {
+        "post": {
+          "description": "withdraw referral rewards",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      },
+      "/api/affiliate/withdraw-commission-rewards": {
+        "post": {
+          "description": "withdraw commission rewards",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "tags": [
+            "Affiliate"
+          ]
+        }
+      }
+    }
+  }

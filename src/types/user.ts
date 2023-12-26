@@ -15,5 +15,5 @@ export interface IUser {
     // Người dùng
     REGULAR_USER = "regular_user",
     // Admin
-    ADMIN = "admin",
+    ADMIN = "ADMIN",
   }

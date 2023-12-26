@@ -6,7 +6,8 @@ import { authorize } from "../middleware/authorize";
 import { verifyToken } from "../middleware/checkCodeOtp";
 
 export const userRouter = (router: Router) => {
-    router.post("/user/register",verifyToken, userValidation, userController.register);
+    // router.post("/user/register",verifyToken, userValidation, userController.register);
+    router.post("/user/register", userValidation, userController.register);
     router.post("/user/login", userController.login);
     router.get("/user/getAn/:id", userController.getAnUser);
     router.put("/user/update/:id", userController.updateUser);

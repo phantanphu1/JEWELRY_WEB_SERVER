@@ -11,6 +11,10 @@ import morgan from 'morgan';
 
 const app = express();
 
+const swaggerUi = require("swagger-ui-express");
+const documentation = require('./common/swagger/rule.json')
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(documentation));
+
 app.use(cors({
   credentials: true,
 }));
@@ -22,6 +26,7 @@ app.use(express.json());
 app.use(morgan("common"));
 
 dotenv.config();
+
 
 const server = http.createServer(app);
 

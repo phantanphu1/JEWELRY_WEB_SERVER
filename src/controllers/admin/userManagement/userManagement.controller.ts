@@ -1,67 +1,11 @@
 import { Request, Response, NextFunction, query } from "express";
-import { errorFunction } from "../utils/errorFunction";
-import Users from "../models/user.model";
 import bcrypt from "bcrypt";
-import { IUser, UserRole } from "../types/user";
 import * as jwt from "jsonwebtoken";
-const userController = {
-  // register: async (
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ) => {
-  //   try {
-  //     const { userName, email, phoneNumber, address, password } = req.body;
-
-  //     // Check if the username is already taken
-  //     const existingUsername = await Users.findOne({ userName });
-  //     if (existingUsername) {
-  //       return res.status(400).json({
-  //         error: true,
-  //         message: "Tên đăng nhập đã được dùng",
-  //       });
-  //     }
-
-  //     // Check if the phone number is already taken
-  //     const existingPhoneNumber = await Users.findOne({ phoneNumber });
-  //     if (existingPhoneNumber) {
-  //       return res.status(400).json({
-  //         error: true,
-  //         message: "Số điện thoại đã được dùng",
-  //       });
-  //     }
-  //     const existingEmail = await Users.findOne({ email });
-  //     if (existingEmail) {
-  //       return res.status(400).json({
-  //         error: true,
-  //         message: "Email đã được dùng",
-  //       });
-  //     }
-  //     const hashedPassword = await bcrypt.hash(password, 10);
-  //     const data = await Users.create({
-  //       userName,
-  //       email,
-  //       phoneNumber,
-  //       address,
-  //       password: hashedPassword,
-  //       role: UserRole.REGULAR_USER,
-  //     });
-  //     const { _id, avt } = data;
-
-  //     res.json({
-  //       error: false,
-  //       status: 200,
-  //       message: "Tạo tài khoản thành công !",
-  //       data: { _id, userName, email, avt,role: data.role },
-  //     });
-  //   } catch (error) {
-  //     console.log("Error creating user:", error);
-  //     res.status(500).json({
-  //       error: true,
-  //       message: "Server error",
-  //     });
-  //   }
-  // },
+import Users from "../../../models/user.model";
+import { errorFunction } from "../../../utils/errorFunction";
+import { IUser } from "types/user";
+const userManagementController = {
+  
   register: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -70,11 +14,6 @@ const userController = {
         password: hashedPassword,
       });
       const { _id, userName, email, avt } = data;
-      // await Rooms.create({
-      //   userId: _id,
-      //   listInbox: [],
-      // });
-
       res.json(
         errorFunction(false, 200, "Tạo tài khoảng thành công !", {
           _id,
@@ -251,4 +190,4 @@ const userController = {
     }
   },
 };
-export default userController;
+export default userManagementController;
